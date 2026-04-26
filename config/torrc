@@ -1,0 +1,59 @@
+# torrc - Hardened Tor configuration for VPN/proxy use case
+# Location: /etc/tor/torrc or config/torrc
+
+## Network Configuration
+SOCKSPort 127.0.0.1:9050
+ControlPort 9051
+DNSPort 5353
+TransPort 9040
+TransListenAddress 0.0.0.0
+DNSListenAddress 0.0.0.0
+
+## Security & Privacy
+CookieAuthentication 1
+SafeLogging 1
+ExitRelay 0
+ClientOnly 1
+NumEntryGuards 4
+UseEntryGuards 1
+EntryNodes {US},{CA},{DE},{NL},{CH}  # Optional: limit to specific countries
+
+## Circuit Configuration
+NewCircuitPeriod 40
+MaxCircuitDirtiness 60
+CircuitBuildTimeout 30
+LearnCircuitBuildTimeout 1
+KeepalivePeriod 300
+
+## Performance
+DataDirectory /var/lib/tor
+HardwareAccel 1
+NumCPUs 2
+
+## Bandwidth Limits (uncomment to restrict)
+#RelayBandwidthRate 1 MB
+#RelayBandwidthBurst 2 MB
+
+## Avoid Tor2Web endpoints
+SafeSocks 1
+TestSocks 1
+WarnPlaintextPorts 23,109,110,143
+RejectPlaintextPorts 23,109,110,143
+
+## Disable unused features
+AutomapHostsOnResolve 1
+VirtualAddrNetworkIPv4 10.192.0.0/10
+#OptimisticData 1  # Disabled for safety
+
+## Logging
+Log notice file /var/log/tor/notices.log
+Log warn file /var/log/tor/warnings.log
+
+## Hidden Services (disabled for proxy use)
+#HiddenServiceDir /var/lib/tor/hidden_service/
+#HiddenServicePort 80 127.0.0.1:8080
+
+## Bridge support (if censored)
+#UseBridges 1
+#Bridge obfs4 192.95.36.142:443 392BEC821B6AD4E25F4E88CAB8C5D23FA61C6D72 cert=FJ5Yw6Y4Gqm...
+#ClientTransportPlugin obfs4 exec /usr/bin/obfs4proxy
