@@ -19,3 +19,15 @@ Use responsibly and in compliance with local laws.
 git clone https://github.com/Falconmx1/tor-transparent-proxy
 cd tor-transparent-proxy
 sudo ./setup.sh
+
+⚠️ Legal Notice
+
+This software is for educational purposes only. Users are responsible for compliance with local laws.
+🤝 Contributing
+
+See CONTRIBUTING.md
+📚 Resources
+
+    Tor Project Documentation
+
+    Linux Network Namespaces
