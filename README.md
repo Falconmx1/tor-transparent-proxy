@@ -31,3 +31,44 @@ See CONTRIBUTING.md
     Tor Project Documentation
 
     Linux Network Namespaces
+
+Instrucciones para implementar:
+    Crea los directorios en tu repo:
+
+bash
+
+mkdir -p src scripts config tests
+
+    Copia cada archivo en su ubicación correspondiente
+
+    Haz ejecutables los scripts:
+
+bash
+
+chmod +x scripts/*.sh
+chmod +x src/*.py
+
+    Instala dependencias:
+
+bash
+
+pip3 install stem socksipy PySocks dnspython requests
+sudo apt install tor
+
+    Prueba primero el controlador Tor:
+
+bash
+
+python3 src/tor_proxy.py
+
+    Si funciona, prueba el proxy completo:
+
+bash
+
+sudo ./scripts/start.sh
+
+    Ejecuta las pruebas de fugas:
+
+bash
+
+python3 tests/test_leaks.py
